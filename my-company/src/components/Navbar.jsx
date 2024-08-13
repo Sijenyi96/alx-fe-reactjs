@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav style= {{ backgroundColor:'blue', display: 'flex', justifyContent:'end'}}>
       <ul>
         <li>
           <Link to="/">Home</Link>
