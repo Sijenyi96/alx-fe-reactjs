@@ -23,6 +23,14 @@ setRecipes: (recipes) => set({ recipes })
       recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
  )})),
 
+  recommendations: [],
+ generateRecommendations: () => set(state => {
+   // Mock implementation based on favorites
+   const recommended = state.recipes.filter(recipe =>
+     state.favorites.includes(recipe.id) && Math.random() > 0.5
+   );
+   return { recommendations: recommended };
+ }),
 
 }));
 
