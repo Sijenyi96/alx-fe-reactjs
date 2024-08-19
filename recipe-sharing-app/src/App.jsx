@@ -5,6 +5,7 @@ import AddRecipeForm from './components/AddRecipeForm';
 import { useRecipeStore } from './components/RecipeStore';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
 
       <AddRecipeForm />
       <RecipeList />
+     <SearchBar />
     </div>
   );
 };
