@@ -13,6 +13,16 @@ setRecipes: (recipes) => set({ recipes }),
 updateRecipe: (updatedRecipe) => set(state => ({ recipes: [...state.recipes, updatedRecipe] })),
 setRecipes: (recipes) => set({ recipes })
 
+  
+  recipes: [],
+  searchTerm: '',
+  setSearchTerm: (term) => set({ searchTerm: term }),
+  filteredRecipes: [],
+  filterRecipes: () => set(state => ({
+    filteredRecipes: state.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+ )})),
+
 
 }));
 
