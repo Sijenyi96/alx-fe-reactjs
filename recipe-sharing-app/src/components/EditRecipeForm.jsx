@@ -4,7 +4,8 @@ const EditRecipeForm = ({ recipeId }) => {
   const recipe = useRecipeStore(state =>
     state.recipes.find(recipe => recipe.id === recipeId)
   );
-
+const handleSubmit = (e) => { 
+  e.preventDefault();
   return (
     <form>
         <input type='text' value={title} />
