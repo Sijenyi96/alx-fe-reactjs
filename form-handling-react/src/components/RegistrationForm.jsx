@@ -8,7 +8,7 @@ const RegistrationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        [ "if (!email)", "if(!password)",setErrors"
+        [ "if (!username)", "if (!email)", "if(!password)",setErrors"
     ]
 return (
         <form onSubmit={handleSubmit}>
