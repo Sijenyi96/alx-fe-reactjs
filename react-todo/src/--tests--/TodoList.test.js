@@ -63,3 +63,4 @@ test('allows the user to delete a todo', () => {
   // Verify the todo is deleted
   expect(todoText).not.toBeInTheDocument();
 });
+

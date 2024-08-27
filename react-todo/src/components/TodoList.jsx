@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 
 const TodoList = () => {
-  // Initialize component state with a few todos
+  // Initialize state with a few demo todos
   const [todos, setTodos] = useState([
     { id: 1, text: 'Learn React', completed: false },
-    { id: 2, text: 'Build a Todo App', completed: true },
-    { id: 3, text: 'Explore React Query', completed: false },
+    { id: 2, text: 'Build a Todo App', completed: false },
+    { id: 3, text: 'Explore React Query', completed: false }
   ]);
 
-  const [newTodo, setNewTodo] = useState('');
-
   // Method to add a new todo
-  const addTodo = () => {
-    if (newTodo.trim()) {
-      setTodos([
-        ...todos,
-        { id: todos.length + 1, text: newTodo, completed: false },
-      ]);
-      setNewTodo(''); // Clear the input field after adding
-    }
+  const addTodo = (text) => {
+    setTodos([...todos, { id: Date.now(), text, completed: false }]);
   };
 
-  // Method to toggle a todo's completed status
+  // Method to toggle the completed status of a todo
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -35,15 +27,17 @@ const TodoList = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  // Rendering the component
   return (
     <div>
-      <h2>Todo List</h2>
+      <h1>Todo List</h1>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
             <span
               style={{
                 textDecoration: todo.completed ? 'line-through' : 'none',
+                cursor: 'pointer'
               }}
               onClick={() => toggleTodo(todo.id)}
             >
@@ -53,15 +47,17 @@ const TodoList = () => {
           </li>
         ))}
       </ul>
-      <input
-        type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
-        placeholder="Add a new todo"
-      />
-      <button onClick={addTodo}>Add Todo</button>
+      <input type="text" placeholder="Add a new todo" id="new-todo-input" />
+      <button
+        onClick={() =>
+          addTodo(document.getElementById('new-todo-input').value)
+        }
+      >
+        Add Todo
+      </button>
     </div>
   );
 };
 
 export default TodoList;
+
