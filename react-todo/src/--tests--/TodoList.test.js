@@ -1,19 +1,21 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import TodoList from '../components/TodoList';
 
 // Initial Render Test
-test('renders the TodoList component with initial todos', () => {
+test('renders the TodoList component with initial todos', async () => {
   render(<TodoList />);
   
   // Verify initial todos are rendered
-  expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
-  expect(screen.getByText(/Build a Todo App/i)).toBeInTheDocument();
-  expect(screen.getByText(/Explore React Query/i)).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
+    expect(screen.getByText(/Build a Todo App/i)).toBeInTheDocument();
+    expect(screen.getByText(/Explore React Query/i)).toBeInTheDocument();
+  });
 });
 
 // Test Adding Todos
-test('allows the user to add a new todo', () => {
+test('allows the user to add a new todo', async () => {
   render(<TodoList />);
   
   // Simulate user typing a new todo
@@ -25,11 +27,13 @@ test('allows the user to add a new todo', () => {
   fireEvent.click(screen.getByText(/add todo/i));
 
   // Verify the new todo is added
-  expect(screen.getByText(/write tests/i)).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.getByText(/write tests/i)).toBeInTheDocument();
+  });
 });
 
 // Test Toggling Todos
-test('allows the user to toggle a todo as completed or not completed', () => {
+test('allows the user to toggle a todo as completed or not completed', async () => {
   render(<TodoList />);
   
   const todoText = screen.getByText(/Learn React/i);
@@ -41,17 +45,21 @@ test('allows the user to toggle a todo as completed or not completed', () => {
   fireEvent.click(todoText);
 
   // Verify the todo is now completed
-  expect(todoText).toHaveStyle('text-decoration: line-through');
+  await waitFor(() => {
+    expect(todoText).toHaveStyle('text-decoration: line-through');
+  });
 
   // Simulate clicking again to unmark as completed
   fireEvent.click(todoText);
 
   // Verify the todo is back to not completed
-  expect(todoText).not.toHaveStyle('text-decoration: line-through');
+  await waitFor(() => {
+    expect(todoText).not.toHaveStyle('text-decoration: line-through');
+  });
 });
 
 // Test Deleting Todos
-test('allows the user to delete a todo', () => {
+test('allows the user to delete a todo', async () => {
   render(<TodoList />);
   
   const todoText = screen.getByText(/Build a Todo App/i);
@@ -61,6 +69,9 @@ test('allows the user to delete a todo', () => {
   fireEvent.click(deleteButton);
 
   // Verify the todo is deleted
-  expect(todoText).not.toBeInTheDocument();
+  await waitFor(() => {
+    expect(todoText).not.toBeInTheDocument();
+  });
 });
+
 
