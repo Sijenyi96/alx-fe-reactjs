@@ -19,6 +19,7 @@ const AddRecipeForm = () => {
 function AddRecipeForm() {
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         const value = event.target.value;
         setTitle(values => ({...values, ['']: value}))
         setIngredients(values => ({...values, ['']: value}))
