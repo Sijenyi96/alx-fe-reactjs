@@ -37,18 +37,37 @@ function AddRecipeForm() {
       }
 
     return ( 
+        <div className="max-w-xl mx-auto p-4">
+        <h2 className="text-2xl font-bold mb-4">Add a New Recipe</h2>
+  
         <form onSubmit={handleSubmit} >
-           <label>Recipe title:
-                <input type="text" />
+        <div className="mb-4">
+           <label className="block text-sm font-medium mb-1" >Recipe title:
+             <input 
+                type="text"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+             />
            </label>
+           </div>
+           <div className="mb-4">
+           <label className="block text-sm font-medium mb-1">Ingredients (one per line)</label>
            <textarea>
               Ingredients.
            </textarea>
+           </div>
+           <div className="mb-4">
+           <label className="block text-sm font-medium mb-1">Preparation Steps (one per line)</label>
            <textarea>
               Preparation steps
            </textarea>
-           <input type="submit" />
+           </div>
+           <button
+             type="submit"
+             className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200">Add Recipe
+           </button>
+
         </form>
+        </div>
      );
 }
 
