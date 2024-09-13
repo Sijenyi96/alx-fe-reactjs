@@ -14,6 +14,15 @@ const AddRecipeForm = () => {
     setErrors('');
   }, []);}
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (!title) newErrors.title = 'Recipe title is required';
+    if (!ingredients || ingredients.split('\n').length < 2) newErrors.ingredients = 'Please enter at least two ingredients';
+    if (!steps) newErrors.steps = 'Preparation steps are required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
 
 
 function AddRecipeForm() {
