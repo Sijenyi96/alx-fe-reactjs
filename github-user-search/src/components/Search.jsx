@@ -23,9 +23,6 @@ const Search =() => {
   };
 
 
-
-[ "if (! username )", setError]
-
 return (
     <div>
      <form onSubmit={handleSubmit}>
@@ -36,8 +33,23 @@ return (
               onChange={(e) => setUsername(e.target.value)} 
               placeholder="Enter username"
          />
-        <button type="submit">Submit</button>
+        <button type="submit">Search</button>
      </form>
+
+       
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {userData && (
+        <div>
+          <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} width="100" />
+          <p>Name: {userData.name}</p>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            View GitHub Profile
+          </a>
+        </div>
+      )}
+
+
      </div>
 );
 
