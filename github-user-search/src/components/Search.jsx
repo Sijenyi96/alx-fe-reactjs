@@ -7,6 +7,7 @@ const Search =() => {
   const [location, setLocation] = useState('');
   const [minRepos, setMinRepos] = useState('');
   const [loading, setLoading] = useState(false);
+  const [results, setResults] =useState([]);
   const [error, setError] =useState ('');
   const handleSubmit = async(e) =>{
     e.preventDefault();
@@ -21,7 +22,9 @@ const Search =() => {
             q: `${username} location:${location} repos:>=${minRepos}`,
           },
         });
-  
+      
+         setResults(users);
+
         if (response.data.items.length > 0) {
           setUserData(response.data.items[0]);
         } else {
@@ -96,6 +99,29 @@ return (
           </a>
         </div>
       )}
+
+<div>
+        {results.length > 0 ? (
+          <ul className="space-y-4">
+            {results.map((user) => (
+              <li key={user.id} className="border p-4 rounded shadow">
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  {user.login}
+                </a>
+                <p>ID: {user.id}</p>
+                <p>Type: {user.type}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No results found.</p>
+        )}
+      </div>
 
 
      </div>
