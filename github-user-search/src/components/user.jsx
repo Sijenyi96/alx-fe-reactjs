@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fetchGitHubUser } from '../services/githubApi';
 
-const user = () => {
+const User = () => {
   const [username, setUsername] = useState('');
   const [userData, setUserData] = useState(null);
 
@@ -34,4 +34,4 @@ const user = () => {
   );
 };
 
-export default user;
+export default User;
