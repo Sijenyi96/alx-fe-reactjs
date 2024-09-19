@@ -46,15 +46,20 @@ return (
     <h1 className="text-2xl font-semibold text-red-500 mb-4">GitHub User Search</h1>
 
      <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+     <div className="mb-4">
+        <label htmlFor="minRepos" className="block text-gray-700 text-sm font-bold mb-2">
+            User Name
+          </label>
          <input
               type="text"
               name="name"
               value={username}
-              onChange={(e) => setUsername(e.target.value)} 
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter username"
          />
 
-         
+         </div>
         <div className="mb-4">
           <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
             Location
@@ -84,7 +89,7 @@ return (
         </div>
 
 
-        <button type="submit">Search</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
      </form>
 
        
